@@ -22,7 +22,22 @@
                     <li><a href="home">home</a></li>
                     <li><a href="about">about</a></li>
                     <li><a href="contact">contact</a></li>
-                    <li><a href="members">members</a></li>
+                    @if(auth()->check())
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->name}}<span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a href="logout">Log Out</a></li>
+                            </ul>
+                        </li>
+                    @else
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">members<span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a href="register">Register</a></li>
+                                <li><a href="login">Log in</a></li>
+                            </ul>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>

@@ -27,3 +27,15 @@ Route::get('/contact', function(){
 Route::get('/members', function(){
     return view('members');
 });
+
+Route::get('/register', 'RegistrationController@create');
+Route::post('/register', 'RegistrationController@store');
+
+Route::get('/login', 'SessionsController@create');
+Route::post('/login', 'SessionsController@store');
+Route::get('/logout', 'SessionsController@destroy');
+
+Route::get('/dashboard', function(){
+    return view('dashboard');
+});
+
