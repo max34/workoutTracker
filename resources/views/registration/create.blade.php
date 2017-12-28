@@ -4,7 +4,7 @@
 <div class="container container-top">
     <div class="row">
         <div class="col-md-6">
-            <form method="POST" action="register">
+            <form method="POST" action="/register">
                 {{csrf_field()}}
                 <h2>Register</h2>
                  <div class="form-group">
