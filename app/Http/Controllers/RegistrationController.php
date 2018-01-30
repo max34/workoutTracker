@@ -3,25 +3,41 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 class RegistrationController extends Controller
 {
-    public function create(){
+    public function showLogin(){
         return view('registration.create');
     }
 
-    public function store(){
-        $this->validate(request(), [
-            'name' => 'Required',
-            'email'=> 'required|email',
-            'password'=>'required'
+    public function doLogin(){
+        $rules = array(
+            'name' => 'required',
+            'email' => 'required|email',
+            'password'=>'required|alphaNum|min:3'
+        );
 
-        ]);
+        $validator = Validator::make(Input::all(), $rules);
 
-        $user = User::create(request(['name','email', 'password']));
+        if($validator->fails()){
+            return Redirect::to('login')
+               ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        }else{
+            $userdata = array(
+              'name' => Input::get('name'),
+                'email'=>Input::get('email'),
+                'password'=>Input::get('password')
+            );
 
-        auth()->login($user);
+            if(Auth::attempt($userdata)){
+                echo 'SUCCESS';
 
-        return redirect()->to('/dashboard');
+            }else{
+                return Redirect::to('login');
+            }
+        }
     }
 }

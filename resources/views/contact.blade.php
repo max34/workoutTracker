@@ -2,13 +2,14 @@
 @section('title', "Contact")
 @section('content')
     <div class="row">
-        <div class="container container-top">
-            <div class="col-md-6">
+        <img src="{{asset('img/gym.jpg')}}" class="index-img">
+        <div class="container centered about">
+            <div>
                 <h3>We want to hear from you</h3>
                 <p>We are here to help you improve and reach your fitness goals. <br>
-                <strong>Share your ideas on how we can improve.</strong></p>
+                    <strong>Share your ideas on how we can improve.</strong></p>
             </div>
-            <div class="col-md-6">
+            <div>
                 <form>
                     <div class="form-group">
                         <label for="contact-email">Email</label>
